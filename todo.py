@@ -32,3 +32,19 @@ class TodoList:
     def list_tasks(self, only_open=False):
         """Возвращает задачи; при only_open=True — только невыполненные."""
         return [t for t in self.tasks if not (only_open and t.done)]
+
+    def _find(self, task_id):
+        for task in self.tasks:
+            if task.id == task_id:
+                return task
+        raise LookupError(f"Задача №{task_id} не найдена")
+
+    def complete_task(self, task_id):
+        """Отмечает задачу выполненной."""
+        task = self._find(task_id)
+        task.done = True
+        return task
+
+    def delete_task(self, task_id):
+        """Удаляет задачу из списка."""
+        self.tasks.remove(self._find(task_id))
