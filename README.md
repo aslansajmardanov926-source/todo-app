@@ -15,3 +15,12 @@
 - Ветки: `main` (стабильная), `develop` (интеграция), `feature/<номер-задачи>-<кратко>`.
 - Формат коммитов: `feat|fix|docs|refactor|test: описание (TASK-N)`.
 - Прямые коммиты в `main` запрещены: изменения только через pull request.
+
+## Запуск
+```
+python main.py add "Купить молоко"
+python main.py list [--open]
+python main.py done 1
+python main.py delete 1
+python -m unittest -v
+```
