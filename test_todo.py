@@ -21,5 +21,22 @@ class AddListTests(unittest.TestCase):
         self.assertEqual([t.title for t in todo.list_tasks(only_open=True)], ["A"])
 
 
+class CompleteDeleteTests(unittest.TestCase):
+    def test_complete_marks_done(self):
+        todo = TodoList()
+        todo.add_task("A")
+        self.assertTrue(todo.complete_task(1).done)
+
+    def test_delete_removes_task(self):
+        todo = TodoList()
+        todo.add_task("A")
+        todo.delete_task(1)
+        self.assertEqual(todo.list_tasks(), [])
+
+    def test_unknown_id_raises(self):
+        with self.assertRaises(LookupError):
+            TodoList().complete_task(99)
+
+
 if __name__ == "__main__":
     unittest.main()
