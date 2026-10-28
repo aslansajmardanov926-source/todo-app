@@ -28,3 +28,6 @@ class TodoList:
         task = Task(self._next_id(), title)
         self.tasks.append(task)
         return task
+
+    def list_tasks(self, only_open=False):
+        return [t for t in self.tasks if not (only_open and t.done)]
